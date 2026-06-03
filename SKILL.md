@@ -195,7 +195,7 @@ def generate_image(prompt, model="dall-e-3", size="1024x1024"):
 
 ## 配置文件
 
-位置：`~/.workbuddy/dalle_config.json`
+位置：`~/.image-2-skill/config.json`
 
 ```json
 {

@@ -6,7 +6,6 @@ image_downloader - 图片下载模块
 负责下载生成的图片到本地存储。
 """
 
-import os
 import sys
 import time
 import hashlib
@@ -15,7 +14,6 @@ from pathlib import Path
 from typing import List, Optional, Dict, Any
 from datetime import datetime
 from urllib.parse import urlparse
-import mimetypes
 
 
 class ImageDownloader:
@@ -154,7 +152,7 @@ class ImageDownloader:
                     elif header[:2] == b'\xff\xd8':
                         # 需要更复杂的解析，这里简化处理
                         pass
-            except:
+            except Exception:
                 pass
         
         return {
@@ -181,7 +179,7 @@ class ImageDownloader:
                     try:
                         info = self.get_image_info(str(filepath))
                         images.append(info)
-                    except:
+                    except Exception:
                         # 跳过无法读取的文件
                         continue
         
@@ -208,7 +206,7 @@ class ImageDownloader:
                         try:
                             filepath.unlink()
                             deleted_count += 1
-                        except:
+                        except Exception:
                             continue
         
         return deleted_count

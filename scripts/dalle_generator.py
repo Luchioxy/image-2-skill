@@ -16,16 +16,13 @@ Examples:
 """
 
 import argparse
-import base64
-import json
 import os
 import sys
-import time
-import hashlib
 from pathlib import Path
 from typing import List, Optional, Dict, Any
 import requests
 from datetime import datetime
+from config_manager import ConfigManager
 
 # 强制 UTF-8 编码
 if sys.stdout.encoding and sys.stdout.encoding.lower().replace('-', '') != 'utf8':
@@ -35,47 +32,22 @@ if sys.stderr.encoding and sys.stderr.encoding.lower().replace('-', '') != 'utf8
 
 
 class DalleConfig:
-    """配置管理类"""
-    
+    """配置管理类（使用 ConfigManager 加密存储）"""
+
     def __init__(self):
-        self.config_dir = Path.home() / ".image-2-skill"
-        self.config_file = self.config_dir / "config.json"
-        self.config = self._load_config()
-    
-    def _load_config(self) -> Dict[str, Any]:
-        """加载配置文件"""
-        if self.config_file.exists():
-            try:
-                with open(self.config_file, 'r', encoding='utf-8') as f:
-                    return json.load(f)
-            except (json.JSONDecodeError, IOError):
-                return {}
-        return {}
-    
-    def _save_config(self):
-        """保存配置文件"""
-        self.config_dir.mkdir(parents=True, exist_ok=True)
-        with open(self.config_file, 'w', encoding='utf-8') as f:
-            json.dump(self.config, f, indent=2, ensure_ascii=False)
-    
+        self._manager = ConfigManager()
+
     def get_api_key(self) -> Optional[str]:
         """获取 API 密钥"""
-        # 优先从环境变量获取
-        api_key = os.environ.get("OPENAI_API_KEY")
-        if api_key:
-            return api_key
-        
-        # 从配置文件获取
-        return self.config.get("openai_api_key")
-    
+        return self._manager.get_api_key()
+
     def set_api_key(self, api_key: str):
-        """设置 API 密钥"""
-        self.config["openai_api_key"] = api_key
-        self._save_config()
-    
+        """设置 API 密钥（加密存储）"""
+        self._manager.set_api_key(api_key)
+
     def get_default(self, key: str, default=None):
         """获取默认配置"""
-        return self.config.get(key, default)
+        return self._manager.get_default(key, default)
 
 
 class DalleGenerator:
@@ -387,7 +359,7 @@ class DalleGenerator:
                     error_data = e.response.json()
                     if "error" in error_data:
                         error_msg = f"API 错误: {error_data['error'].get('message', str(e))}"
-                except:
+                except Exception:
                     pass
             
             raise Exception(error_msg)
