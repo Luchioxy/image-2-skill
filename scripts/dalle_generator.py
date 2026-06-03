@@ -38,8 +38,8 @@ class DalleConfig:
     """配置管理类"""
     
     def __init__(self):
-        self.config_dir = Path.home() / ".workbuddy"
-        self.config_file = self.config_dir / "dalle_config.json"
+        self.config_dir = Path.home() / ".image-2-skill"
+        self.config_file = self.config_dir / "config.json"
         self.config = self._load_config()
     
     def _load_config(self) -> Dict[str, Any]:

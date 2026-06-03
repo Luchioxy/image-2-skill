@@ -20,9 +20,9 @@ class ConfigManager:
     """配置管理器"""
     
     def __init__(self):
-        self.config_dir = Path.home() / ".workbuddy"
-        self.config_file = self.config_dir / "dalle_config.json"
-        self.key_file = self.config_dir / ".dalle_key"
+        self.config_dir = Path.home() / ".image-2-skill"
+        self.config_file = self.config_dir / "config.json"
+        self.key_file = self.config_dir / ".key"
         self.config = self._load_config()
         self.cipher = self._init_cipher()
     

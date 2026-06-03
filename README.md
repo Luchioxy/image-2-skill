@@ -81,11 +81,8 @@ python scripts/dalle_generator.py "一只可爱的橘猫在阳光下打盹"
 | **Claude Code** | ✅ 完全支持 | Bash 命令行调用 |
 | **WorkBuddy** | ✅ 完全支持 | Skill 工具调用 |
 | **Cursor** | ✅ 完全支持 | 终端命令调用 |
-| **Windsurf** | ✅ 完全支持 | 终端命令调用 |
-| **ChatGPT (Code Interpreter)** | ✅ 支持 | Python 代码执行 |
-| **GitHub Copilot** | ✅ 支持 | 终端命令调用 |
-| **Cline** | ✅ 支持 | 命令行调用 |
-| **Aider** | ✅ 支持 | 命令行调用 |
+| **OpenClaw** | ✅ 完全支持 | 命令行调用 |
+| **Hermes** | ✅ 完全支持 | 命令行调用 |
 | **任意支持命令行的 Agent** | ✅ 支持 | 命令行调用 |
 
 > **原理**：本技能基于标准 Python 脚本和命令行接口，任何能执行 shell 命令的 Agent 均可调用。
@@ -172,8 +169,8 @@ def generate_image(prompt, model="dall-e-3"):
 | 措施 | 说明 |
 |------|------|
 | **加密算法** | AES-256（Fernet 对称加密） |
-| **密钥存储** | 加密后保存到 `~/.workbuddy/dalle_config.json` |
-| **加密密钥** | 独立生成，存储在 `~/.workbuddy/.dalle_key` |
+| **密钥存储** | 加密后保存到 `~/.image-2-skill/config.json` |
+| **加密密钥** | 独立生成，存储在 `~/.image-2-skill/.key` |
 | **运行时** | 仅在内存中解密使用，不落盘明文 |
 | **访问控制** | 配置文件仅当前用户可读写 |
 
@@ -296,11 +293,8 @@ python scripts/dalle_generator.py "A cute orange cat napping in the sunshine"
 | **Claude Code** | ✅ Full support | Bash command line |
 | **WorkBuddy** | ✅ Full support | Skill tool invocation |
 | **Cursor** | ✅ Full support | Terminal command |
-| **Windsurf** | ✅ Full support | Terminal command |
-| **ChatGPT (Code Interpreter)** | ✅ Supported | Python code execution |
-| **GitHub Copilot** | ✅ Supported | Terminal command |
-| **Cline** | ✅ Supported | Command line |
-| **Aider** | ✅ Supported | Command line |
+| **OpenClaw** | ✅ Full support | Command line |
+| **Hermes** | ✅ Full support | Command line |
 | **Any Agent with CLI access** | ✅ Supported | Command line |
 
 > **Principle**: This skill is based on standard Python scripts and CLI interface. Any Agent that can execute shell commands can call it.
@@ -387,8 +381,8 @@ def generate_image(prompt, model="dall-e-3"):
 | Measure | Description |
 |---------|-------------|
 | **Encryption Algorithm** | AES-256 (Fernet symmetric encryption) |
-| **Key Storage** | Encrypted in `~/.workbuddy/dalle_config.json` |
-| **Encryption Key** | Independently generated, stored in `~/.workbuddy/.dalle_key` |
+| **Key Storage** | Encrypted in `~/.image-2-skill/config.json` |
+| **Encryption Key** | Independently generated, stored in `~/.image-2-skill/.key` |
 | **Runtime** | Decrypted only in memory, never written as plaintext |
 | **Access Control** | Config files readable/writable only by current user |
 
