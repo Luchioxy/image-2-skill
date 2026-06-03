@@ -12,11 +12,24 @@
 
 image-2-skill 是一个基于 OpenAI DALL·E 模型的图片生成服务技能，支持 DALL·E 2 和 DALL·E 3。
 
-**核心定位**：本技能是一个可被其他 Agent/Skill 调用的图片生成服务。
+**核心定位**：DALL·E 图片生成服务，支持两种触发方式。
 
+**方式 1：Skill/Agent 主动调用**
 ```
 其他 Agent/Skill 需要图片 → 调用本技能 → 返回图片
 ```
+
+**方式 2：识别客户需求自动触发**
+```
+识别到客户有生图需求 → 自动调用本技能 → 返回图片
+```
+
+**典型场景**：
+- 电商：产品展示图、详情页配图、主图
+- 营销：海报、Banner、社交媒体配图
+- 办公：PPT 配图、报告插图、文档配图
+- 设计：Logo 概念图、UI 素材、图标
+- 个人：头像、表情包、壁纸、贺卡
 
 ### 核心流程
 
@@ -224,11 +237,24 @@ Fernet 生成随机加密密钥（存储在 .dalle_key）
 
 image-2-skill is an image generation service skill based on OpenAI DALL·E models, supporting DALL·E 2 and DALL·E 3.
 
-**Core Positioning**: This skill is an image generation service that can be called by other Agents/Skills.
+**Core Positioning**: DALL·E image generation service with two trigger methods.
 
+**Method 1: Skill/Agent Invocation**
 ```
 Other Agent/Skill needs an image → Calls this skill → Returns the image
 ```
+
+**Method 2: Auto-triggered by Customer Need Detection**
+```
+Customer need for image detected → Auto-calls this skill → Returns the image
+```
+
+**Typical Scenarios**:
+- E-commerce: Product images, listing photos, hero images
+- Marketing: Posters, banners, social media graphics
+- Office: PPT illustrations, report graphics, document images
+- Design: Logo concepts, UI assets, icons
+- Personal: Avatars, emojis, wallpapers, greeting cards
 
 ### Core Flow
 
